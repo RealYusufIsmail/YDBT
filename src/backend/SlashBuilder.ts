@@ -13,15 +13,11 @@ export class CustomSlashCommandBuilder extends SlashCommandBuilder {
         return this.name;
     }
 
+    public getDescription(): string {
+        return this.description;
+    }
+
     public isGuildOnly(): boolean {
         return this.guildOnly;
-    }
-
-    public original(): SlashCommandBuilder {
-        return this;
-    }
-
-    public toString() : RESTPostAPIApplicationCommandsJSONBody {
-        return this.toJSON();
     }
 }
