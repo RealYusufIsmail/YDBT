@@ -11,7 +11,7 @@ export default (client: Client) : void => {
 }
 
 const handleSlashCommand = async (client: Client, interaction: BaseCommandInteraction) : Promise<void> => {
-    const slashCommand = Commands.find(c => c.name === interaction.commandName);
+    const slashCommand = Commands.find(c => c.builder.getName() === interaction.commandName);
 
     if (!slashCommand) {
         interaction.followUp({ content: "An error has occurred" });

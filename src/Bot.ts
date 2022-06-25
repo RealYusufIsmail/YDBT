@@ -5,13 +5,16 @@ import ReadyEvent from "./listeners/ReadyEvent";
 
 dotenv.config();
 
+const token = process.env.DISCORD_TOKEN;
+const guildId = process.env.DISCORD_GUILD_ID;
+
 console.log("Starting bot...");
 
 const client = new Client({
     intents: [Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_VOICE_STATES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.GUILD_PRESENCES],
 });
 
-ReadyEvent(client);
+ReadyEvent(client, token, guildId);
 InteractionCreateEvent(client);
 
-client.login(process.env.DISCORD_TOKEN);
+client.login(token);

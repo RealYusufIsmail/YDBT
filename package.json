@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/RealYusufIsmail/Discord-Bot-in-Typescript#readme",
   "dependencies": {
+    "@discordjs/rest": "^0.5.0",
+    "discord-api-types": "^0.35.0",
     "discord.js": "^13.8.1",
     "dotenv": "^16.0.1"
   },

@@ -9,7 +9,7 @@ exports.default = (client) => {
     });
 };
 const handleSlashCommand = async (client, interaction) => {
-    const slashCommand = Commands_1.Commands.find(c => c.name === interaction.commandName);
+    const slashCommand = Commands_1.Commands.find(c => c.builder.getName() === interaction.commandName);
     if (!slashCommand) {
         interaction.followUp({ content: "An error has occurred" });
         return;
