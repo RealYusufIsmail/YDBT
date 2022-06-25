@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Commands_1 = require("src/Commands");
+const Commands_1 = require("../Commands");
 exports.default = (client) => {
     client.on("interactionCreate", async (interaction) => {
-        if (interaction.isApplicationCommand() || interaction.isContextMenu()) {
-            await onSlashCommand(client, interaction);
+        if (interaction.isCommand() || interaction.isContextMenu()) {
+            await handleSlashCommand(client, interaction);
         }
     });
 };
-const onSlashCommand = async (client, interaction) => {
+const handleSlashCommand = async (client, interaction) => {
     const slashCommand = Commands_1.Commands.find(c => c.name === interaction.commandName);
     if (!slashCommand) {
         interaction.followUp({ content: "An error has occurred" });
