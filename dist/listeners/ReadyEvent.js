@@ -1,10 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const Commands_1 = require("src/Commands");
 exports.default = (client) => {
     client.on("ready", async () => {
         if (!client.user || !client.application) {
             return;
         }
+        await client.application.commands.set(Commands_1.Commands);
         console.log(`Logged in as ${client.user.tag}!`);
     });
 };

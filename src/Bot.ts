@@ -1,5 +1,6 @@
 import { Client, Intents } from "discord.js";
 import * as dotenv from 'dotenv';
+import InteractionCreateEvent from "./listeners/InteractionCreateEvent";
 import ReadyEvent from "./listeners/ReadyEvent";
 
 dotenv.config();
@@ -11,5 +12,6 @@ const client = new Client({
 });
 
 ReadyEvent(client);
+InteractionCreateEvent(client);
 
 client.login(process.env.DISCORD_TOKEN);
