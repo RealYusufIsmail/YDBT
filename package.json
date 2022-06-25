@@ -1,0 +1,28 @@
+{
+  "name": "discord-bot-in-typescript",
+  "version": "1.0.0",
+  "description": "A discord bot made in typescript",
+  "main": "src/Bot.ts",
+  "scripts": {
+    "start": "ts-node src/Bot.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RealYusufIsmail/Discord-Bot-in-Typescript.git"
+  },
+  "author": "RealYusufIsmail",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RealYusufIsmail/Discord-Bot-in-Typescript/issues"
+  },
+  "homepage": "https://github.com/RealYusufIsmail/Discord-Bot-in-Typescript#readme",
+  "dependencies": {
+    "discord.js": "^13.8.1",
+    "dotenv": "^16.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.4"
+  }
+}
