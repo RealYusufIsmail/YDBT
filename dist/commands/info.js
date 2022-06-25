@@ -12,7 +12,4 @@ exports.Info = {
     builder: new SlashBuilder_1.CustomSlashCommandBuilder()
         .setName("info")
         .setDescription("Info!"),
-    getBuilder: () => {
-        return exports.Info.builder;
-    }
 };

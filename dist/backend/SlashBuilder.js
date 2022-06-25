@@ -14,5 +14,11 @@ class CustomSlashCommandBuilder extends builders_1.SlashCommandBuilder {
     isGuildOnly() {
         return this.guildOnly;
     }
+    original() {
+        return this;
+    }
+    toString() {
+        return this.toJSON();
+    }
 }
 exports.CustomSlashCommandBuilder = CustomSlashCommandBuilder;

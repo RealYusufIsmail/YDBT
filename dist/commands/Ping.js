@@ -12,7 +12,4 @@ exports.Ping = {
     builder: new SlashBuilder_1.CustomSlashCommandBuilder()
         .setName("ping")
         .setDescription("Ping!"),
-    getBuilder: () => {
-        return exports.Ping.builder;
-    }
 };

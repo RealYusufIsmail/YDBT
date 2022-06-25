@@ -14,8 +14,4 @@ export const Info : Command = {
     builder: new CustomSlashCommandBuilder()
         .setName("info")
         .setDescription("Info!"),
-
-    getBuilder: () => {
-        return Info.builder;
-    }
 }

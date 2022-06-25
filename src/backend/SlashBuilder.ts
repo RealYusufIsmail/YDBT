@@ -21,7 +21,7 @@ export class CustomSlashCommandBuilder extends SlashCommandBuilder {
         return this;
     }
 
-    public toJSON() : RESTPostAPIApplicationCommandsJSONBody {
-        return this.original().toJSON();
+    public toString() : RESTPostAPIApplicationCommandsJSONBody {
+        return this.toJSON();
     }
 }

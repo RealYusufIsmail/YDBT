@@ -14,8 +14,4 @@ export const Ping : Command = {
     builder: new CustomSlashCommandBuilder()
         .setName("ping")
         .setDescription("Ping!"),
-
-    getBuilder: () => {
-        return Ping.builder;
-    }
 }
