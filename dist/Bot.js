@@ -10,7 +10,7 @@ const token = process.env.DISCORD_TOKEN;
 const guildId = process.env.DISCORD_GUILD_ID;
 console.log("Starting bot...");
 const client = new discord_js_1.Client({
-    intents: [discord_js_1.Intents.FLAGS.GUILD_MESSAGES, discord_js_1.Intents.FLAGS.GUILD_VOICE_STATES, discord_js_1.Intents.FLAGS.GUILD_MESSAGE_REACTIONS, discord_js_1.Intents.FLAGS.GUILD_PRESENCES],
+    intents: [discord_js_1.GatewayIntentBits.Guilds]
 });
 (0, ReadyEvent_1.default)(client);
 (0, InteractionCreateEvent_1.default)(client);
