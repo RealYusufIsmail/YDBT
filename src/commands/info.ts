@@ -1,5 +1,5 @@
 import {Client, Colors, CommandInteraction, EmbedBuilder} from "discord.js";
-import {Command} from "../Command";
+import {Command} from "../handle/Command";
 import {ApplicationCommandType} from "discord-api-types/v10";
 
 export const Info: Command = {
@@ -23,6 +23,6 @@ export const Info: Command = {
                 {name: "Amount of guilds", value: client.guilds.cache.size.toString(), inline: false}])
             .setColor(Colors.Aqua);
 
-        await interaction.reply({ embeds: [embed] });
+        await interaction.reply({embeds: [embed]});
     }
 }

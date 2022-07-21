@@ -1,4 +1,4 @@
-import {Command} from "../../Command";
+import {Command} from "../../handle/Command";
 import {ApplicationCommandOptionType, ApplicationCommandType, Client, CommandInteraction} from "discord.js";
 
 export const Ban: Command = {
@@ -24,7 +24,7 @@ export const Ban: Command = {
         const user = interaction.options.getUser("user");
         const reason = interaction.isChatInputCommand() ? interaction.options.getString("reason") : "No reason provided";
 
-        if(!user) {
+        if (!user) {
             await interaction.reply("Could not find the user to ban");
             return;
         }
@@ -36,10 +36,10 @@ export const Ban: Command = {
 
         await interaction!.guild!.members.ban(user, {reason})
             .then(() => {
-                interaction.reply(`Banned ${user.username}#${user.discriminator}`);
-            }
+                    interaction.reply(`Banned ${user.username}#${user.discriminator}`);
+                }
             ).catch(() => {
-                interaction.reply({ content:"Could not ban the provided user", ephemeral: true});
+                interaction.reply({content: "Could not ban the provided user", ephemeral: true});
             });
     }
 }

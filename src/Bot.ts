@@ -26,7 +26,7 @@ client.login(token).then(() => {
     }
 
     console.log(`Logged in as ${client.user.tag}!`);
-} ).catch(err => {
+}).catch(err => {
     console.error(err);
 });
 

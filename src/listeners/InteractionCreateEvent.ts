@@ -1,5 +1,5 @@
 import {Client, CommandInteraction, Interaction} from "discord.js";
-import {Commands} from "../Commands";
+import {Commands} from "../handle/Commands";
 
 
 export default (client: Client): void => {
@@ -14,7 +14,7 @@ const handleSlashCommand = async (client: Client, interaction: CommandInteractio
     const slashCommand = Commands.find(c => c.name === interaction.commandName);
 
     if (!slashCommand) {
-       throw new Error(`Could not find command ${interaction.commandName}`);
+        throw new Error(`Could not find command ${interaction.commandName}`);
     }
 
     await slashCommand.run(client, interaction);
