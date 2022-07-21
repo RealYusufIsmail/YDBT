@@ -7,9 +7,8 @@ export const Ping: Command = {
     type: ApplicationCommandType.ChatInput,
 
     run: async (client: Client, interaction: CommandInteraction) => {
-        await interaction.followUp({
-            ephemeral: true,
-            content: "Pong!"
-        });
+
+        const sent = await interaction.reply({ content: 'Pinging...', fetchReply: true, ephemeral: true });
+        await interaction.editReply(`Roundtrip latency: ${sent.createdTimestamp - interaction.createdTimestamp}ms`);
     },
 }

@@ -7,9 +7,7 @@ exports.Ping = {
     description: "Shows the bot's ping",
     type: discord_js_1.ApplicationCommandType.ChatInput,
     run: async (client, interaction) => {
-        await interaction.followUp({
-            ephemeral: true,
-            content: "Pong!"
-        });
+        const sent = await interaction.reply({ content: 'Pinging...', fetchReply: true, ephemeral: true });
+        await interaction.editReply(`Roundtrip latency: ${sent.createdTimestamp - interaction.createdTimestamp}ms`);
     },
 };

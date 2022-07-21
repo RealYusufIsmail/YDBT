@@ -1,20 +1,20 @@
 import {Command} from "../../Command";
 import {ApplicationCommandOptionType, ApplicationCommandType, Client, CommandInteraction} from "discord.js";
 
-export const Ban: Command = {
-    name: "ban",
-    description: "Bans a user from the server",
+export const UnBan: Command = {
+    name: "unban",
+    description: "Unbans a user from the server",
     type: ApplicationCommandType.ChatInput,
     options: [
         {
             name: "user",
-            description: "The user to ban",
+            description: "The user to unban",
             type: ApplicationCommandOptionType.User,
             required: true
         },
         {
             name: "reason",
-            description: "The reason for the ban",
+            description: "The reason for the unban",
             type: ApplicationCommandOptionType.String,
             required: true
         }
@@ -25,7 +25,7 @@ export const Ban: Command = {
         const reason = interaction.isChatInputCommand() ? interaction.options.getString("reason") : "No reason provided";
 
         if(!user) {
-            await interaction.reply("Could not find the user to ban");
+            await interaction.reply("Could not find the user to unban");
             return;
         }
 
@@ -34,12 +34,12 @@ export const Ban: Command = {
             return;
         }
 
-        await interaction!.guild!.members.ban(user, {reason})
+        await interaction!.guild!.members.unban(user, reason)
             .then(() => {
-                interaction.reply(`Banned ${user.username}#${user.discriminator}`);
+                interaction.reply(`Unbanned ${user.username}#${user.discriminator}`);
             }
             ).catch(() => {
-                interaction.reply({ content:"Could not ban the provided user", ephemeral: true});
+                interaction.reply({ content:"Could not unban the provided user", ephemeral: true});
             });
     }
 }
