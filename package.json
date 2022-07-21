@@ -4,7 +4,9 @@
   "description": "A discord bot made in typescript",
   "main": "src/Bot.ts",
   "scripts": {
-    "start": "ts-node src/Bot.ts"
+    "start": "ts-node src/Bot.ts",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
