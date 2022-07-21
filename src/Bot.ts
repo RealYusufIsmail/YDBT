@@ -1,8 +1,7 @@
-import { Client, GatewayIntentBits } from "discord.js";
+import {Client, GatewayIntentBits} from "discord.js";
 import * as dotenv from 'dotenv';
 import InteractionCreateEvent from "./listeners/InteractionCreateEvent";
 import ReadyEvent from "./listeners/ReadyEvent";
-import fs from"node:fs";
 
 
 dotenv.config();

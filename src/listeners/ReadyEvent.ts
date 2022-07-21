@@ -1,5 +1,5 @@
-import { Client } from "discord.js";
-import { Commands } from "../Commands";
+import {Client} from "discord.js";
+import {Commands} from "../Commands";
 
 
 export default (client: Client): void => {
@@ -9,7 +9,7 @@ export default (client: Client): void => {
         }
 
         await client.application.commands.set(Commands);
-        
+
         console.log(`Logged in as ${client.user.tag}!`);
     });
 }

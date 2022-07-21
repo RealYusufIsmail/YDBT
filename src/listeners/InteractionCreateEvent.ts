@@ -1,24 +1,21 @@
-import { BaseCommandInteraction, Client, Interaction } from "discord.js";
-import { Commands } from "../Commands";
+import {Client, CommandInteraction, Interaction} from "discord.js";
+import {Commands} from "../Commands";
 
 
-export default (client: Client) : void => {
+export default (client: Client): void => {
     client.on("interactionCreate", async (interaction: Interaction) => {
-        if (interaction.isCommand() || interaction.isContextMenu()) {
+        if (interaction.isChatInputCommand()) {
             await handleSlashCommand(client, interaction);
         }
     });
 }
 
-const handleSlashCommand = async (client: Client, interaction: BaseCommandInteraction) : Promise<void> => {
+const handleSlashCommand = async (client: Client, interaction: CommandInteraction): Promise<void> => {
     const slashCommand = Commands.find(c => c.name === interaction.commandName);
 
     if (!slashCommand) {
-        interaction.followUp({ content: "An error has occurred" });
-        return;
+       throw new Error(`Could not find command ${interaction.commandName}`);
     }
-
-    await interaction.deferReply();
-
-    slashCommand.run(client, interaction);
+    
+    await slashCommand.run(client, interaction);
 }

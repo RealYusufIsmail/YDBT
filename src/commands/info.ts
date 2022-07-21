@@ -1,17 +1,28 @@
-import { BaseCommandInteraction, Client, MessageEmbed } from "discord.js";
-import { SlashCommandBuilder } from "@discordjs/builders";
-import { CustomSlashCommandBuilder } from "../backend/SlashBuilder";
-import { Command } from "../Command";
+import {Client, Colors, CommandInteraction, EmbedBuilder} from "discord.js";
+import {Command} from "../Command";
+import {ApplicationCommandType} from "discord-api-types/v10";
 
-export const Info : Command = {
+export const Info: Command = {
     name: "info",
     description: "Shows info about the bot",
-    type: "CHAT_INPUT",
-    
-    run: async (client: Client, interaction: BaseCommandInteraction) => {
+    type: ApplicationCommandType.ChatInput,
+
+    run: async (client: Client, interaction: CommandInteraction) => {
         const bot = client.user;
         const guild = interaction.guild;
-        const embedBuilder = new MessageEmbed();
-    
-    },
+
+        const embed = new EmbedBuilder()
+            .setTitle("Info about " + bot!.username)
+            .addFields([
+                {name: "ID", value: bot!.id.toString(), inline: false},
+                {name: "Tag", value: bot!.tag.toString(), inline: false},
+                {name: "Created at", value: bot!.createdAt.toString(), inline: false},
+                {name: "Joined at", value: guild!.joinedAt.toString(), inline: false},
+                {name: "Amount of members", value: guild!.memberCount.toString(), inline: false},
+                {name: "Amount of channels", value: guild!.channels.cache.size.toString(), inline: false},
+                {name: "Amount of guilds", value: client.guilds.cache.size.toString(), inline: false}])
+            .setColor(Colors.Aqua);
+
+        await interaction.reply({ embeds: [embed] });
+    }
 }
