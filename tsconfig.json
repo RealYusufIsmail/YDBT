@@ -19,10 +19,6 @@
         ],
         "sourceMap": false,
         "baseUrl": "./",
-        "lib": [
-            "esnext.full",
-            "webworker"
-        ]
     },
     "files": [
         "src/Bot.ts"
