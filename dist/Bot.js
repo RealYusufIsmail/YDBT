@@ -14,4 +14,11 @@ const client = new discord_js_1.Client({
 });
 (0, ReadyEvent_1.default)(client);
 (0, InteractionCreateEvent_1.default)(client);
-client.login(token);
+client.login(token).then(() => {
+    if (!client.user) {
+        return;
+    }
+    console.log(`Logged in as ${client.user.tag}!`);
+}).catch(err => {
+    console.error(err);
+});

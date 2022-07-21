@@ -18,6 +18,16 @@ const client = new Client({
 ReadyEvent(client);
 InteractionCreateEvent(client);
 
-client.login(token);
+
+client.login(token).then(() => {
+
+    if (!client.user) {
+        return;
+    }
+
+    console.log(`Logged in as ${client.user.tag}!`);
+} ).catch(err => {
+    console.error(err);
+});
 
 //yarn start

@@ -7,6 +7,5 @@ exports.default = (client) => {
             return;
         }
         await client.application.commands.set(Commands_1.Commands);
-        console.log(`Logged in as ${client.user.tag}!`);
     });
 };

@@ -16,6 +16,6 @@ const handleSlashCommand = async (client: Client, interaction: CommandInteractio
     if (!slashCommand) {
        throw new Error(`Could not find command ${interaction.commandName}`);
     }
-    
+
     await slashCommand.run(client, interaction);
 }

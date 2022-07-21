@@ -9,7 +9,5 @@ export default (client: Client): void => {
         }
 
         await client.application.commands.set(Commands);
-
-        console.log(`Logged in as ${client.user.tag}!`);
     });
 }
