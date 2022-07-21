@@ -18,7 +18,11 @@
             "node_modules/@types"
         ],
         "sourceMap": false,
-        "baseUrl": "./"
+        "baseUrl": "./",
+        "lib": [
+            "esnext.full",
+            "webworker"
+        ]
     },
     "files": [
         "src/Bot.ts"
