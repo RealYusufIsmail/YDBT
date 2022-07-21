@@ -7,3 +7,8 @@ import {UserInfo} from "../commands/UserInfo";
 import {Kick} from "../commands/moderation/Kick";
 
 export const Commands: Command[] = [Ping, Info, Ban, UnBan, UserInfo, Kick];
+
+//get commands as a List
+export const getCommands = (): Command[] => {
+    return Commands;
+}
