@@ -22,6 +22,15 @@ exports.Info = {
             { name: "Amount of guilds", value: client.guilds.cache.size.toString(), inline: false }
         ])
             .setColor(discord_js_1.Colors.Aqua);
-        await interaction.reply({ embeds: [embed] });
+        const button = new discord_js_1.ActionRowBuilder()
+            .addComponents(new discord_js_1.ButtonBuilder()
+            .setCustomId("uptime")
+            .setLabel("Uptime")
+            .setStyle(discord_js_1.ButtonStyle.Primary))
+            .addComponents(new discord_js_1.ButtonBuilder()
+            .setCustomId("delete")
+            .setLabel("Delete")
+            .setStyle(discord_js_1.ButtonStyle.Danger));
+        await interaction.reply({ embeds: [embed], components: [button] });
     }
 };

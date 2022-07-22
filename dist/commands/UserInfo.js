@@ -43,7 +43,12 @@ exports.UserInfo = {
                 { name: "Is bot", value: user.bot.toString(), inline: false }
             ])
                 .setColor(discord_js_1.Colors.Aqua);
-            await interaction.reply({ embeds: [builder] });
+            const button = new discord_js_1.ActionRowBuilder()
+                .addComponents(new discord_js_1.ButtonBuilder()
+                .setCustomId("delete")
+                .setLabel("Delete")
+                .setStyle(discord_js_1.ButtonStyle.Danger));
+            await interaction.reply({ embeds: [builder], components: [button] });
         }
     }
 };

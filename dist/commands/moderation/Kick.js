@@ -23,12 +23,22 @@ exports.Kick = {
     run: async (client, interaction) => {
         const member = interaction.options.getUser("member");
         const reason = interaction.isChatInputCommand() ? interaction.options.getString("reason") : "No reason provided";
+        const bot = interaction.guild.members.cache.get(client.user.id);
         if (!member) {
             await interaction.reply("Could not find the member to kick");
             return;
         }
         if (!reason) {
             await interaction.reply("No reason provided");
+            return;
+        }
+        const guildMember = interaction.guild.members.cache.find(m => m.user.id === member.id);
+        if (!guildMember) {
+            await interaction.reply("Could not find the member to kick");
+            return;
+        }
+        if (guildMember.roles.highest.comparePositionTo(bot.roles.highest) > 0) {
+            await interaction.reply("I cannot kick a member that is stronger than me");
             return;
         }
         await interaction.guild.members.kick(member, reason)

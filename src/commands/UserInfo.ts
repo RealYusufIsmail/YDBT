@@ -1,8 +1,16 @@
-import {ApplicationCommandOptionType, Client, Colors, CommandInteraction, EmbedBuilder, GuildMember} from "discord.js";
-import {Command} from "../handle/Command";
+import {
+    ActionRowBuilder,
+    ApplicationCommandOptionType,
+    ButtonBuilder,
+    ButtonStyle,
+    Colors,
+    EmbedBuilder,
+    GuildMember
+} from "discord.js";
+import {ISlashCommand} from "../handle/command/ISlashCommand";
 import {ApplicationCommandType} from "discord-api-types/v10";
 
-export const UserInfo: Command = {
+export const UserInfo: ISlashCommand = {
     name: "user_info",
     description: "Shows info about a user user",
     type: ApplicationCommandType.ChatInput,
@@ -15,7 +23,7 @@ export const UserInfo: Command = {
         }
     ],
 
-    run: async (client: Client, interaction: CommandInteraction) => {
+    run: async (client, interaction) => {
         const user = interaction.options.getUser("user");
         const member = interaction.member;
         if (user == null && member != null) {
@@ -27,7 +35,7 @@ export const UserInfo: Command = {
                         {name: "Tag", value: interaction.user.tag.toString(), inline: false},
                         {name: "Created at", value: interaction.user.createdAt.toString(), inline: false},
                         {name: "Joined at", value: member.joinedAt!.toString(), inline: false},
-                        {name : "Is bot", value: interaction.user.bot.toString(), inline: false}])
+                        {name: "Is bot", value: interaction.user.bot.toString(), inline: false}])
                     .setColor(Colors.Aqua);
                 await interaction.reply({embeds: [builder]});
             }
@@ -38,9 +46,16 @@ export const UserInfo: Command = {
                     {name: "ID", value: user.id.toString(), inline: false},
                     {name: "Tag", value: user.tag.toString(), inline: false},
                     {name: "Created at", value: user.createdAt.toString(), inline: false},
-                    {name : "Is bot", value: user.bot.toString(), inline: false}])
+                    {name: "Is bot", value: user.bot.toString(), inline: false}])
                 .setColor(Colors.Aqua);
-            await interaction.reply({embeds: [builder]});
+
+            const button = new ActionRowBuilder<ButtonBuilder>()
+                .addComponents(new ButtonBuilder()
+                    .setCustomId("delete")
+                    .setLabel("Delete")
+                    .setStyle(ButtonStyle.Danger));
+
+            await interaction.reply({embeds: [builder], components: [button]});
         }
     }
 }

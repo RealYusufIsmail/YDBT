@@ -1,7 +1,7 @@
-import {Command} from "../../handle/Command";
-import {ApplicationCommandOptionType, ApplicationCommandType, Client, CommandInteraction} from "discord.js";
+import {ISlashCommand} from "../../handle/command/ISlashCommand";
+import {ApplicationCommandOptionType, ApplicationCommandType} from "discord.js";
 
-export const UnBan: Command = {
+export const UnBan: ISlashCommand = {
     name: "unban",
     description: "Unbans a user from the server",
     type: ApplicationCommandType.ChatInput,
@@ -20,7 +20,7 @@ export const UnBan: Command = {
         }
     ],
 
-    run: async (client: Client, interaction: CommandInteraction) => {
+    run: async (client, interaction) => {
         const user = interaction.options.getUser("user");
         const reason = interaction.isChatInputCommand() ? interaction.options.getString("reason") : "No reason provided";
 

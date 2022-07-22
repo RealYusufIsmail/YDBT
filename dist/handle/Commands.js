@@ -7,7 +7,8 @@ const Ban_1 = require("../commands/moderation/Ban");
 const UnBan_1 = require("../commands/moderation/UnBan");
 const UserInfo_1 = require("../commands/UserInfo");
 const Kick_1 = require("../commands/moderation/Kick");
-exports.Commands = [Ping_1.Ping, info_1.Info, Ban_1.Ban, UnBan_1.UnBan, UserInfo_1.UserInfo, Kick_1.Kick];
+const Help_1 = require("../commands/Help");
+exports.Commands = [Ping_1.Ping, info_1.Info, Ban_1.Ban, UnBan_1.UnBan, UserInfo_1.UserInfo, Kick_1.Kick, Help_1.Help];
 const getCommands = () => {
     return exports.Commands;
 };

@@ -1,13 +1,13 @@
-import {Client, Colors, CommandInteraction, EmbedBuilder} from "discord.js";
-import {Command} from "../handle/Command";
+import {ActionRowBuilder, ButtonBuilder, ButtonStyle, Colors, EmbedBuilder} from "discord.js";
+import {ISlashCommand} from "../handle/command/ISlashCommand";
 import {ApplicationCommandType} from "discord-api-types/v10";
 
-export const Info: Command = {
+export const Info: ISlashCommand = {
     name: "info",
     description: "Shows info about the bot",
     type: ApplicationCommandType.ChatInput,
 
-    run: async (client: Client, interaction: CommandInteraction) => {
+    run: async (client, interaction) => {
         const bot = client.user;
         const guild = interaction.guild;
 
@@ -23,6 +23,16 @@ export const Info: Command = {
                 {name: "Amount of guilds", value: client.guilds.cache.size.toString(), inline: false}])
             .setColor(Colors.Aqua);
 
-        await interaction.reply({embeds: [embed]});
+        const button = new ActionRowBuilder<ButtonBuilder>()
+            .addComponents(new ButtonBuilder()
+                .setCustomId("uptime")
+                .setLabel("Uptime")
+                .setStyle(ButtonStyle.Primary))
+            .addComponents(new ButtonBuilder()
+                .setCustomId("delete")
+                .setLabel("Delete")
+                .setStyle(ButtonStyle.Danger));
+
+        await interaction.reply({embeds: [embed], components: [button]});
     }
 }
