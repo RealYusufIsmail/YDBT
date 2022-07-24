@@ -25,6 +25,7 @@ const handleSlashCommand = async (client: Client, interaction: CommandInteractio
     const guildMember = interaction.member as GuildMember;
     const bot = client.isReady() ? client.user as User : null;
 
+    //TODO: broken
     const botAsMember = guildMember.guild.members.cache.get(bot!.id) as GuildMember;
 
     if (botAsMember == null && command.botRequiredPerms != null || command.botRequiredPerms != null) {
