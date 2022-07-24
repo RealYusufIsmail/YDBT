@@ -37,7 +37,7 @@ export const Kick: ISlashCommand = {
             return;
         }
 
-        const guildMember = interaction.guild!.members.cache.find(m => m.user.id === member.id);
+        const guildMember = interaction.guild!.members.me;
 
         if (!guildMember) {
             await interaction.reply("Could not find the member to kick");

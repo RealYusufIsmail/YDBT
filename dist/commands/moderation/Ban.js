@@ -34,7 +34,7 @@ exports.Ban = {
             await interaction.reply("No reason provided");
             return;
         }
-        const guildMember = interaction.guild.members.cache.find(m => m.user.id === user.id);
+        const guildMember = interaction.guild.members.me;
         if (!guildMember) {
             await interaction.guild.members.ban(user, { reason })
                 .then(() => {

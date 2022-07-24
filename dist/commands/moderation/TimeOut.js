@@ -39,7 +39,7 @@ exports.TimeOut = {
         }
         const minutes = duration * 60 * 1000;
         const time = Date.now() + minutes;
-        const guildMember = interaction.guild.members.cache.find(m => m.user.id === member.id);
+        const guildMember = interaction.guild.members.me;
         if (!guildMember) {
             await interaction.reply("Could not find the member to time out");
             return;

@@ -20,11 +20,7 @@ const handleSlashCommand = async (client, interaction, player) => {
     }
     const guildMember = interaction.member;
     const bot = client.isReady() ? client.user : null;
-    const botAsMember = guildMember.guild.members.cache.get(bot.id);
-    if (botAsMember == null && command.botRequiredPerms != null || command.botRequiredPerms != null) {
-        await interaction.reply({ content: "This command can only be used in a guild", ephemeral: true });
-        return;
-    }
+    const botAsMember = interaction.guild.members.me;
     await checkIfMemberPerms(guildMember, command.userRequiredPerms, interaction);
     await checkIfMemberPerms(botAsMember, command.botRequiredPerms, interaction);
     await command.run(client, interaction, player);
