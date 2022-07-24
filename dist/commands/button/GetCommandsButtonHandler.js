@@ -20,6 +20,16 @@ exports.GetCommandsButtonHandler = {
             .setCustomId("delete")
             .setLabel("Delete")
             .setStyle(discord_js_1.ButtonStyle.Danger));
-        await interaction.reply({ embeds: [embed], components: [button] });
+        const pages = [];
+        let page = 0;
+        while ((0, RegSlashCommands_1.getCommands)().length > page * 25) {
+            pages.push(embed.setDescription(`Page ${page + 1}`));
+            page++;
+            button.addComponents(new discord_js_1.ButtonBuilder()
+                .setCustomId(`page_${page++}`)
+                .setLabel(`Page ${page++}`)
+                .setStyle(discord_js_1.ButtonStyle.Primary));
+        }
+        await interaction.reply({ embeds: pages, components: [button] });
     }
 };

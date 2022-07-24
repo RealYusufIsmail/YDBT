@@ -45,13 +45,15 @@ export const PlayList: ISlashCommand = {
             return;
         }
 
+        let guildQueue = player.getQueue(guild.id);
         let queue = player.createQueue(guild.id);
         await queue.join(member.voice.channel as GuildChannelResolvable);
         let song = await queue.playlist(playlistOption).then(() => {
             interaction.reply("Playing playlist");
         } ).catch(async (error) => {
             await interaction.reply(`Error playing playlist: ${error}`);
-            queue.stop();
+            if(!guildQueue)
+                queue.stop();
         });
     }
 }

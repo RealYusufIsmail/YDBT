@@ -38,13 +38,15 @@ exports.PlayList = {
             await interaction.reply("Please specify a youtube playlist");
             return;
         }
+        let guildQueue = player.getQueue(guild.id);
         let queue = player.createQueue(guild.id);
         await queue.join(member.voice.channel);
         let song = await queue.playlist(playlistOption).then(() => {
             interaction.reply("Playing playlist");
         }).catch(async (error) => {
             await interaction.reply(`Error playing playlist: ${error}`);
-            queue.stop();
+            if (!guildQueue)
+                queue.stop();
         });
     }
 };

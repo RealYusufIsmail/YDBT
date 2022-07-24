@@ -18,5 +18,7 @@ exports.Stop = {
             return;
         }
         await guildQueue.stop();
+        await guildQueue.clearQueue();
+        await interaction.reply("Stopped song");
     }
 };

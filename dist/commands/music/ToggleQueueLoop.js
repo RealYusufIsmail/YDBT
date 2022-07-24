@@ -19,5 +19,6 @@ exports.ToggleQueueLoop = {
             return;
         }
         guildQueue.setRepeatMode(discord_music_player_1.RepeatMode.QUEUE);
+        await interaction.reply("Toggled loop on queue");
     }
 };

@@ -18,5 +18,6 @@ exports.Skip = {
             return;
         }
         await guildQueue.skip();
+        await interaction.reply("Skipped song");
     }
 };

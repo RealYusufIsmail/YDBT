@@ -16,8 +16,14 @@ import {Skip} from "../../commands/music/Skip";
 import {Stop} from "../../commands/music/Stop";
 import {ToggleQueueLoop} from "../../commands/music/ToggleQueueLoop";
 import {GetQueue} from "../../commands/music/GetQueue";
+import {ClearQueue} from "../../commands/music/ClearQueue";
+import {Pause} from "../../commands/music/Pause";
+import {Resume} from "../../commands/music/Resume";
+import {NowPlaying} from "../../commands/music/NowPlaying";
+import {SongProgress} from "../../commands/music/SongProgress";
 
-export const RegSlashCommands: ISlashCommand[] = [Help, Ping, UserInfo, Info, Ban, UnBan, Kick, DeleteMessages, TimeOut, Play, PlayList, RemoveLoop, ToggleLoop, ToggleQueueLoop, Skip, Stop, GetQueue];
+export const RegSlashCommands: ISlashCommand[] = [Help, Ping, UserInfo, Info, Ban, UnBan, Kick, DeleteMessages, TimeOut, Play, PlayList, RemoveLoop,
+    ToggleLoop, ToggleQueueLoop, Skip, Stop, GetQueue, ClearQueue, Pause, Resume, NowPlaying, SongProgress];
 
 //get commands as a List
 export const getCommands = (): ISlashCommand[] => {

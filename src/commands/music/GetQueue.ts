@@ -2,7 +2,7 @@ import {ISlashCommand} from "../../handle/command/ISlashCommand";
 import {ApplicationCommandType, Colors, EmbedBuilder} from "discord.js";
 
 export const GetQueue: ISlashCommand = {
-    name: "get_queue",
+    name: "queue",
     description: "Gets the current queue",
     type: ApplicationCommandType.ChatInput,
 
@@ -21,14 +21,16 @@ export const GetQueue: ISlashCommand = {
             return;
         }
 
-        let queue : String = String(guildQueue);
-        queue = queue.replace(/\n/g, "\\n");
-
         const embed = new EmbedBuilder()
             .setTitle("Queue")
             .addFields(
-                { name: 'Queue', value: queue.toString() }
-            )
+                guildQueue.songs.map((song, index) => {
+                    return {
+                        name: `${index + 1}. ${song.name}` + ' by ' + ` ${song.author}`,
+                        value: `${song.url}` + '\n' + `${song.duration}`
+                    }
+                }
+            ) as Array<{ name: string, value: string }>)
             .setColor(Colors.Aqua)
             .setTimestamp();
 

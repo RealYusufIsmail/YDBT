@@ -17,15 +17,27 @@ export const GetCommandsButtonHandler: IButton = {
             ))
             .setColor(Colors.Aqua);
 
-        //TODO: build a page system for this
-
-        //add delete button
         const button = new ActionRowBuilder<ButtonBuilder>()
             .addComponents(new ButtonBuilder()
                 .setCustomId("delete")
                 .setLabel("Delete")
                 .setStyle(ButtonStyle.Danger));
 
-        await interaction.reply({embeds: [embed], components: [button]});
+        //if getCommands().length > 25, split into multiple pages
+        const pages = [];
+        let page = 0;
+
+        while (getCommands().length > page * 25) {
+            pages.push(embed.setDescription(`Page ${page + 1}`));
+            page++;
+            button.addComponents(new ButtonBuilder()
+                .setCustomId(`page_${page++}`)
+                .setLabel(`Page ${page++}`)
+                .setStyle(ButtonStyle.Primary));
+        }
+
+        await interaction.reply({embeds: pages, components: [button]});
+
+        //TODO: Figure out how to make this work
     }
 }

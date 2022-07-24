@@ -1,9 +1,9 @@
 import {ISlashCommand} from "../../handle/command/ISlashCommand";
 import {ApplicationCommandType} from "discord.js";
 
-export const Stop: ISlashCommand = {
-    name: "stop",
-    description: "Stops the current song",
+export const Resume: ISlashCommand = {
+    name: "resume",
+    description: "Resumes the current song",
     type: ApplicationCommandType.ChatInput,
 
     run: async (client, interaction, player) => {
@@ -17,12 +17,11 @@ export const Stop: ISlashCommand = {
         let guildQueue = player.getQueue(guild.id);
 
         if (guildQueue == null) {
-            await interaction.reply("There is no song to stop");
+            await interaction.reply("There is no song to resume");
             return;
         }
 
-        await guildQueue.stop();
-        await guildQueue.clearQueue();
-        await interaction.reply("Stopped song");
+        await guildQueue.setPaused(false);
+        await interaction.reply("Resumed song");
     }
 }

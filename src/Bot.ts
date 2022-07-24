@@ -36,11 +36,12 @@ discordClient.login(token).then(() => {
 });
 
 discordClient.player
-    .on('channelEmpty', (q: { members: { size: number; }; leave: () => void; }) => {
+    .on('channelEmpty', (q: { members: { size: number; }; clear: () => void; leave: () => void; }) => {
         //wait 5 minutes before leaving the channel
         setTimeout(() => {
             //check if the channel is empty
             if (q.members.size === 0) {
+                q.clear();
                 q.leave();
             }
         } , 300000);

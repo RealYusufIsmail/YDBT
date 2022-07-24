@@ -30,6 +30,7 @@ discordClient.player
     .on('channelEmpty', (q) => {
     setTimeout(() => {
         if (q.members.size === 0) {
+            q.clear();
             q.leave();
         }
     }, 300000);

@@ -23,5 +23,6 @@ export const RemoveLoop: ISlashCommand = {
         }
 
         guildQueue.setRepeatMode(RepeatMode.DISABLED); // or 0 instead of RepeatMode.DISABLED
+        await interaction.reply("Removed loop from song");
     }
 }

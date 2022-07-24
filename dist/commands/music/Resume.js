@@ -1,11 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RemoveLoop = void 0;
+exports.Resume = void 0;
 const discord_js_1 = require("discord.js");
-const discord_music_player_1 = require("discord-music-player");
-exports.RemoveLoop = {
-    name: "remove_loop",
-    description: "Removes the loop from the current song",
+exports.Resume = {
+    name: "resume",
+    description: "Resumes the current song",
     type: discord_js_1.ApplicationCommandType.ChatInput,
     run: async (client, interaction, player) => {
         const guild = interaction.guild;
@@ -15,10 +14,10 @@ exports.RemoveLoop = {
         }
         let guildQueue = player.getQueue(guild.id);
         if (guildQueue == null) {
-            await interaction.reply("There is no song to remove loop from");
+            await interaction.reply("There is no song to resume");
             return;
         }
-        guildQueue.setRepeatMode(discord_music_player_1.RepeatMode.DISABLED);
-        await interaction.reply("Removed loop from song");
+        await guildQueue.setPaused(false);
+        await interaction.reply("Resumed song");
     }
 };

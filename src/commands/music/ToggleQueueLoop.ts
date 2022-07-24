@@ -23,5 +23,6 @@ export const ToggleQueueLoop: ISlashCommand = {
         }
 
         guildQueue.setRepeatMode(RepeatMode.QUEUE); // or 1 instead of RepeatMode.SONG
+        await interaction.reply("Toggled loop on queue");
     }
 }

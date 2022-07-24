@@ -22,5 +22,6 @@ export const Skip: ISlashCommand = {
         }
 
         await guildQueue.skip();
+        await interaction.reply("Skipped song");
     }
 }
