@@ -1,7 +1,7 @@
-import {ISlashMusicCommand} from "../../handle/command/ISlashCommand";
+import {ISlashCommand} from "../../handle/command/ISlashCommand";
 import {ApplicationCommandType} from "discord.js";
 
-export const Stop: ISlashMusicCommand = {
+export const Stop: ISlashCommand = {
     name: "stop",
     description: "Stops the current song",
     type: ApplicationCommandType.ChatInput,

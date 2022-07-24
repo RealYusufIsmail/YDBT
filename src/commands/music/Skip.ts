@@ -1,7 +1,7 @@
-import {ISlashMusicCommand} from "../../handle/command/ISlashCommand";
+import {ISlashCommand} from "../../handle/command/ISlashCommand";
 import {ApplicationCommandType} from "discord.js";
 
-export const Skip: ISlashMusicCommand = {
+export const Skip: ISlashCommand = {
     name: "skip",
     description: "Skips the current song",
     type: ApplicationCommandType.ChatInput,

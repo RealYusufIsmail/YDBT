@@ -1,8 +1,8 @@
-import {ISlashMusicCommand} from "../../handle/command/ISlashCommand";
+import {ISlashCommand} from "../../handle/command/ISlashCommand";
 import {ApplicationCommandType} from "discord.js";
 import {RepeatMode} from "discord-music-player";
 
-export const RemoveLoop: ISlashMusicCommand = {
+export const RemoveLoop: ISlashCommand = {
     name: "remove_loop",
     description: "Removes the loop from the current song",
     type: ApplicationCommandType.ChatInput,

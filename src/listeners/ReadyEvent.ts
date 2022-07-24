@@ -1,5 +1,5 @@
 import {Client} from "discord.js";
-import {RegSlashCommands, RegSlashMusicCommands} from "../handle/command/RegSlashCommands";
+import {RegSlashCommands} from "../handle/command/RegSlashCommands";
 
 
 export default (client: Client): void => {
@@ -9,6 +9,5 @@ export default (client: Client): void => {
         }
 
         await client.application.commands.set(RegSlashCommands);
-        await client.application.commands.set(RegSlashMusicCommands);
     });
 }

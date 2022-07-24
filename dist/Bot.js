@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", {value: true});
+Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
 const discord_js_1 = require("discord.js");
 const dotenv = tslib_1.__importStar(require("dotenv"));
@@ -13,7 +13,7 @@ const Discord = require("discord.js");
 const discordClient = new Discord.Client({
     intents: [discord_js_1.GatewayIntentBits.Guilds, discord_js_1.GatewayIntentBits.GuildMessages, discord_js_1.GatewayIntentBits.GuildVoiceStates]
 });
-const {Player} = require("discord-music-player");
+const { Player } = require("discord-music-player");
 const player = new Player(discordClient, {
     leaveOnEmpty: false,
 });
@@ -28,9 +28,9 @@ discordClient.login(token).then(() => {
 });
 discordClient.player
     .on('channelEmpty', (q) => {
-        setTimeout(() => {
-            if (q.members.size === 0) {
-                q.leave();
-            }
-        }, 300000);
-    });
+    setTimeout(() => {
+        if (q.members.size === 0) {
+            q.leave();
+        }
+    }, 300000);
+});

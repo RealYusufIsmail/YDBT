@@ -1,7 +1,7 @@
-import {ISlashMusicCommand} from "../../handle/command/ISlashCommand";
+import {ISlashCommand} from "../../handle/command/ISlashCommand";
 import {ApplicationCommandType, Colors, EmbedBuilder} from "discord.js";
 
-export const GetQueue: ISlashMusicCommand = {
+export const GetQueue: ISlashCommand = {
     name: "get_queue",
     description: "Gets the current queue",
     type: ApplicationCommandType.ChatInput,

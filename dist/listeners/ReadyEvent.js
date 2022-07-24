@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", {value: true});
+Object.defineProperty(exports, "__esModule", { value: true });
 const RegSlashCommands_1 = require("../handle/command/RegSlashCommands");
 exports.default = (client) => {
     client.on("ready", async () => {
@@ -7,6 +7,5 @@ exports.default = (client) => {
             return;
         }
         await client.application.commands.set(RegSlashCommands_1.RegSlashCommands);
-        await client.application.commands.set(RegSlashCommands_1.RegSlashMusicCommands);
     });
 };

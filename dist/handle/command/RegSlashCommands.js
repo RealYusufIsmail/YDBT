@@ -1,6 +1,6 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", {value: true});
-exports.getMusicCommands = exports.getCommands = exports.RegSlashMusicCommands = exports.RegSlashCommands = void 0;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getCommands = exports.RegSlashCommands = void 0;
 const info_1 = require("../../commands/info");
 const Ping_1 = require("../../commands/Ping");
 const Ban_1 = require("../../commands/moderation/Ban");
@@ -18,13 +18,8 @@ const Skip_1 = require("../../commands/music/Skip");
 const Stop_1 = require("../../commands/music/Stop");
 const ToggleQueueLoop_1 = require("../../commands/music/ToggleQueueLoop");
 const GetQueue_1 = require("../../commands/music/GetQueue");
-exports.RegSlashCommands = [Help_1.Help, Ping_1.Ping, UserInfo_1.UserInfo, info_1.Info, Ban_1.Ban, UnBan_1.UnBan, Kick_1.Kick, DeleteMessages_1.DeleteMessages, TimeOut_1.TimeOut];
-exports.RegSlashMusicCommands = [Play_1.Play, PlayList_1.PlayList, RemoveLoop_1.RemoveLoop, ToggleLoop_1.ToggleLoop, ToggleQueueLoop_1.ToggleQueueLoop, Skip_1.Skip, Stop_1.Stop, GetQueue_1.GetQueue];
+exports.RegSlashCommands = [Help_1.Help, Ping_1.Ping, UserInfo_1.UserInfo, info_1.Info, Ban_1.Ban, UnBan_1.UnBan, Kick_1.Kick, DeleteMessages_1.DeleteMessages, TimeOut_1.TimeOut, Play_1.Play, PlayList_1.PlayList, RemoveLoop_1.RemoveLoop, ToggleLoop_1.ToggleLoop, ToggleQueueLoop_1.ToggleQueueLoop, Skip_1.Skip, Stop_1.Stop, GetQueue_1.GetQueue];
 const getCommands = () => {
     return exports.RegSlashCommands;
 };
 exports.getCommands = getCommands;
-const getMusicCommands = () => {
-    return exports.RegSlashMusicCommands;
-};
-exports.getMusicCommands = getMusicCommands;

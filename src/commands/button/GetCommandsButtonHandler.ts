@@ -1,6 +1,6 @@
 import {IButton} from "../../handle/button/Button";
 import {ActionRowBuilder, ButtonBuilder, ButtonStyle, Colors, EmbedBuilder} from "discord.js";
-import {getCommands, getMusicCommands} from "../../handle/command/RegSlashCommands";
+import {getCommands} from "../../handle/command/RegSlashCommands";
 
 export const GetCommandsButtonHandler: IButton = {
     customId: "commands",
@@ -9,13 +9,6 @@ export const GetCommandsButtonHandler: IButton = {
         const embed = new EmbedBuilder()
             .setTitle("Commands")
             .addFields(getCommands().map(command => {
-                    return {
-                        name: command.name,
-                        value: command.description
-                    }
-                }
-            ))
-            .addFields(getMusicCommands().map(command => {
                     return {
                         name: command.name,
                         value: command.description

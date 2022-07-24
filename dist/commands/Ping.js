@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", {value: true});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Ping = void 0;
 const discord_js_1 = require("discord.js");
 exports.Ping = {
@@ -7,7 +7,7 @@ exports.Ping = {
     description: "Shows the bot's ping",
     type: discord_js_1.ApplicationCommandType.ChatInput,
     run: async (client, interaction) => {
-        const sent = await interaction.reply({content: 'Pinging...', fetchReply: true, ephemeral: true});
+        const sent = await interaction.reply({ content: 'Pinging...', fetchReply: true, ephemeral: true });
         await interaction.editReply(`Roundtrip latency: ${sent.createdTimestamp - interaction.createdTimestamp}ms`);
     },
 };

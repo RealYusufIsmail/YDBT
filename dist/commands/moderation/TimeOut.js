@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", {value: true});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.TimeOut = void 0;
 const v10_1 = require("discord-api-types/v10");
 const discord_js_1 = require("discord.js");
@@ -52,7 +52,7 @@ exports.TimeOut = {
             interaction.reply(`Timed out ${member.username}#${member.discriminator} for ${duration} minutes`);
         })
             .catch(() => {
-                interaction.reply({content: "Could not time out the provided member", ephemeral: true});
-            });
+            interaction.reply({ content: "Could not time out the provided member", ephemeral: true });
+        });
     }
 };

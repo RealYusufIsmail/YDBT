@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", {value: true});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.GetQueue = void 0;
 const discord_js_1 = require("discord.js");
 exports.GetQueue = {
@@ -21,9 +21,9 @@ exports.GetQueue = {
         queue = queue.replace(/\n/g, "\\n");
         const embed = new discord_js_1.EmbedBuilder()
             .setTitle("Queue")
-            .addFields({name: 'Queue', value: queue.toString()})
+            .addFields({ name: 'Queue', value: queue.toString() })
             .setColor(discord_js_1.Colors.Aqua)
             .setTimestamp();
-        await interaction.reply({embeds: [embed]});
+        await interaction.reply({ embeds: [embed] });
     }
 };

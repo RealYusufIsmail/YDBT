@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", {value: true});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserInfo = void 0;
 const discord_js_1 = require("discord.js");
 const v10_1 = require("discord-api-types/v10");
@@ -23,31 +23,32 @@ exports.UserInfo = {
                 const builder = new discord_js_1.EmbedBuilder()
                     .setTitle("Info about " + member.user.username)
                     .addFields([
-                        {name: "ID", value: interaction.user.id.toString(), inline: false},
-                        {name: "Tag", value: interaction.user.tag.toString(), inline: false},
-                        {name: "Created at", value: interaction.user.createdAt.toString(), inline: false},
-                        {name: "Joined at", value: member.joinedAt.toString(), inline: false},
-                        {name: "Is bot", value: interaction.user.bot.toString(), inline: false}
-                    ])
+                    { name: "ID", value: interaction.user.id.toString(), inline: false },
+                    { name: "Tag", value: interaction.user.tag.toString(), inline: false },
+                    { name: "Created at", value: interaction.user.createdAt.toString(), inline: false },
+                    { name: "Joined at", value: member.joinedAt.toString(), inline: false },
+                    { name: "Is bot", value: interaction.user.bot.toString(), inline: false }
+                ])
                     .setColor(discord_js_1.Colors.Aqua);
-                await interaction.reply({embeds: [builder]});
+                await interaction.reply({ embeds: [builder] });
             }
-        } else if (user != null) {
+        }
+        else if (user != null) {
             const builder = new discord_js_1.EmbedBuilder()
                 .setTitle("Info about " + user.username)
                 .addFields([
-                    {name: "ID", value: user.id.toString(), inline: false},
-                    {name: "Tag", value: user.tag.toString(), inline: false},
-                    {name: "Created at", value: user.createdAt.toString(), inline: false},
-                    {name: "Is bot", value: user.bot.toString(), inline: false}
-                ])
+                { name: "ID", value: user.id.toString(), inline: false },
+                { name: "Tag", value: user.tag.toString(), inline: false },
+                { name: "Created at", value: user.createdAt.toString(), inline: false },
+                { name: "Is bot", value: user.bot.toString(), inline: false }
+            ])
                 .setColor(discord_js_1.Colors.Aqua);
             const button = new discord_js_1.ActionRowBuilder()
                 .addComponents(new discord_js_1.ButtonBuilder()
-                    .setCustomId("delete")
-                    .setLabel("Delete")
-                    .setStyle(discord_js_1.ButtonStyle.Danger));
-            await interaction.reply({embeds: [builder], components: [button]});
+                .setCustomId("delete")
+                .setLabel("Delete")
+                .setStyle(discord_js_1.ButtonStyle.Danger));
+            await interaction.reply({ embeds: [builder], components: [button] });
         }
     }
 };

@@ -1,5 +1,5 @@
 import Discord, {ButtonInteraction, Client, CommandInteraction, GuildMember, Interaction, User} from "discord.js";
-import {RegSlashCommands, RegSlashMusicCommands} from "../handle/command/RegSlashCommands";
+import {RegSlashCommands} from "../handle/command/RegSlashCommands";
 import {RegButtons} from "../handle/button/RegButtons";
 import {Player} from "discord-music-player";
 
@@ -15,7 +15,7 @@ export default (client: Client, player: Player): void => {
 }
 
 const handleSlashCommand = async (client: Client, interaction: CommandInteraction, player: Player): Promise<void> => {
-    const command = RegSlashCommands.find(c => c.name === interaction.commandName) ?? RegSlashMusicCommands.find(c => c.name === interaction.commandName);
+    const command = RegSlashCommands.find(c => c.name === interaction.commandName);
 
     if (!command) {
         await interaction.reply({content: "Could not find the command", ephemeral: true});

@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", {value: true});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.ToggleQueueLoop = void 0;
 const discord_js_1 = require("discord.js");
 const discord_music_player_1 = require("discord-music-player");

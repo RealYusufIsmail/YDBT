@@ -7,9 +7,5 @@ export interface ISlashCommandCore extends ChatInputApplicationCommandData {
 }
 
 export interface ISlashCommand extends ISlashCommandCore {
-    run: (client: Client, interaction: CommandInteraction) => Promise<void>;
-}
-
-export interface ISlashMusicCommand extends ISlashCommandCore {
     run: (client: Client, interaction: CommandInteraction, player: Player) => Promise<void>;
 }

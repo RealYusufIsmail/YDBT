@@ -1,8 +1,8 @@
-import {ISlashMusicCommand} from "../../handle/command/ISlashCommand";
+import {ISlashCommand} from "../../handle/command/ISlashCommand";
 import {ApplicationCommandType} from "discord.js";
 import {RepeatMode} from "discord-music-player";
 
-export const ToggleLoop: ISlashMusicCommand = {
+export const ToggleLoop: ISlashCommand = {
     name: "toggle_loop",
     description: "Toggles the loop on the current song",
     type: ApplicationCommandType.ChatInput,

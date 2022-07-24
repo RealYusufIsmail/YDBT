@@ -1,7 +1,7 @@
-import {ISlashMusicCommand} from "../../handle/command/ISlashCommand";
+import {ISlashCommand} from "../../handle/command/ISlashCommand";
 import {ApplicationCommandOptionType, ApplicationCommandType, GuildChannelResolvable, GuildMember} from "discord.js";
 
-export const Play: ISlashMusicCommand = {
+export const Play: ISlashCommand = {
     name: "play",
     description: "Plays a song",
     type: ApplicationCommandType.ChatInput,

@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", {value: true});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.UnBan = void 0;
 const discord_js_1 = require("discord.js");
 exports.UnBan = {
@@ -35,9 +35,9 @@ exports.UnBan = {
         }
         await interaction.guild.members.unban(user, reason)
             .then(() => {
-                interaction.reply(`Unbanned ${user.username}#${user.discriminator}`);
-            }).catch(() => {
-                interaction.reply({content: "Could not unban the provided user", ephemeral: true});
-            });
+            interaction.reply(`Unbanned ${user.username}#${user.discriminator}`);
+        }).catch(() => {
+            interaction.reply({ content: "Could not unban the provided user", ephemeral: true });
+        });
     }
 };
