@@ -1,11 +1,13 @@
 import {ISlashCommand} from "../../handle/command/ISlashCommand";
 import {ApplicationCommandType} from "discord-api-types/v10";
-import {ApplicationCommandOptionType} from "discord.js";
+import {ApplicationCommandOptionType, PermissionsBitField} from "discord.js";
 
 export const TimeOut: ISlashCommand = {
     name: "timeout",
     description: "Time out a user for a certain amount of time.",
     type: ApplicationCommandType.ChatInput,
+    botRequiredPerms : [ PermissionsBitField.Flags.MuteMembers],
+    userRequiredPerms : [ PermissionsBitField.Flags.MuteMembers],
     options: [
         {
             name: "member",
@@ -17,7 +19,7 @@ export const TimeOut: ISlashCommand = {
             name: "duration",
             description: "The amount of time (in minutes) to time out the member for.",
             type: ApplicationCommandOptionType.Number,
-            min_value : 1,
+            min_value: 1,
             max_value: 40320,
             required: true,
         }
@@ -59,8 +61,8 @@ export const TimeOut: ISlashCommand = {
         await guildMember.timeout(time).then(() => {
             interaction.reply(`Timed out ${member.username}#${member.discriminator} for ${duration} minutes`);
         })
-        .catch(() => {
-            interaction.reply({content: "Could not time out the provided member", ephemeral: true});
-        });
+            .catch(() => {
+                interaction.reply({content: "Could not time out the provided member", ephemeral: true});
+            });
     }
 }

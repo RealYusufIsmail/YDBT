@@ -1,11 +1,13 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 exports.Kick = void 0;
 const discord_js_1 = require("discord.js");
 exports.Kick = {
     name: "kick",
     description: "Kicks a user from the server",
     type: discord_js_1.ApplicationCommandType.ChatInput,
+    botRequiredPerms: [discord_js_1.PermissionsBitField.Flags.KickMembers],
+    userRequiredPerms: [discord_js_1.PermissionsBitField.Flags.KickMembers],
     options: [
         {
             name: "member",
@@ -43,9 +45,9 @@ exports.Kick = {
         }
         await interaction.guild.members.kick(member, reason)
             .then(() => {
-            interaction.reply(`Kicked ${member.username}#${member.discriminator}`);
-        }).catch(() => {
-            interaction.reply({ content: "Could not kick the provided member", ephemeral: true });
-        });
+                interaction.reply(`Kicked ${member.username}#${member.discriminator}`);
+            }).catch(() => {
+                interaction.reply({content: "Could not kick the provided member", ephemeral: true});
+            });
     }
 };

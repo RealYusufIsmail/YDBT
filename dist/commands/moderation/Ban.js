@@ -1,11 +1,13 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 exports.Ban = void 0;
 const discord_js_1 = require("discord.js");
 exports.Ban = {
     name: "ban",
     description: "Bans a user from the server",
     type: discord_js_1.ApplicationCommandType.ChatInput,
+    botRequiredPerms: [discord_js_1.PermissionsBitField.Flags.BanMembers],
+    userRequiredPerms: [discord_js_1.PermissionsBitField.Flags.BanMembers],
     options: [
         {
             name: "user",
@@ -34,24 +36,23 @@ exports.Ban = {
         }
         const guildMember = interaction.guild.members.cache.find(m => m.user.id === user.id);
         if (!guildMember) {
-            await interaction.guild.members.ban(user, { reason })
+            await interaction.guild.members.ban(user, {reason})
                 .then(() => {
-                interaction.reply(`Banned ${user.username}#${user.discriminator}`);
-            }).catch(() => {
-                interaction.reply({ content: "Could not ban the provided user", ephemeral: true });
-            });
-        }
-        else {
+                    interaction.reply(`Banned ${user.username}#${user.discriminator}`);
+                }).catch(() => {
+                    interaction.reply({content: "Could not ban the provided user", ephemeral: true});
+                });
+        } else {
             if (guildMember.roles.highest.comparePositionTo(bot.roles.highest) > 0) {
                 await interaction.reply("I cannot ban a member that is stronger than me");
                 return;
             }
-            await interaction.guild.members.ban(guildMember, { reason })
+            await interaction.guild.members.ban(guildMember, {reason})
                 .then(() => {
-                interaction.reply(`Banned ${user.username}#${user.discriminator}`);
-            }).catch(() => {
-                interaction.reply({ content: "Could not ban the provided user", ephemeral: true });
-            });
+                    interaction.reply(`Banned ${user.username}#${user.discriminator}`);
+                }).catch(() => {
+                    interaction.reply({content: "Could not ban the provided user", ephemeral: true});
+                });
         }
     }
 };

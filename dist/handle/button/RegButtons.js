@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 exports.RegButtons = void 0;
 const GetCommandsButtonHandler_1 = require("../../commands/button/GetCommandsButtonHandler");
 const DeleteButtonHandler_1 = require("../../commands/button/DeleteButtonHandler");

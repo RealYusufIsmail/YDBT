@@ -5,6 +5,8 @@ export const DeleteMessages: ISlashCommand = {
     name: "delete",
     description: "Deletes a number of messages",
     type: ApplicationCommandType.ChatInput,
+    botRequiredPerms : [ PermissionsBitField.Flags.ManageMessages],
+    userRequiredPerms : [ PermissionsBitField.Flags.ManageMessages],
     options: [
         {
             name: "count",
@@ -26,14 +28,6 @@ export const DeleteMessages: ISlashCommand = {
 
         if (!member) {
             await interaction.reply("You must be in a guild to use this command");
-            return;
-        }
-
-        if (!member.permissions.has(PermissionsBitField.Flags.ManageMessages)) {
-            await interaction.reply({
-                content: "You do not have the required permissions to use this command",
-                ephemeral: true
-            });
             return;
         }
 

@@ -1,4 +1,4 @@
-import {Client, GatewayIntentBits} from "discord.js";
+import {GatewayIntentBits} from "discord.js";
 import * as dotenv from 'dotenv';
 import InteractionCreateEvent from "./listeners/InteractionCreateEvent";
 import ReadyEvent from "./listeners/ReadyEvent";
@@ -11,23 +11,40 @@ const guildId = process.env.DISCORD_GUILD_ID;
 
 console.log("Starting bot...");
 
-const client = new Client({
-    intents: [GatewayIntentBits.Guilds]
+const Discord = require("discord.js");
+const discordClient = new Discord.Client({
+    intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildVoiceStates]
 });
 
-ReadyEvent(client);
-InteractionCreateEvent(client);
+const {Player} = require("discord-music-player");
+const player = new Player(discordClient, {
+    leaveOnEmpty: false, // This options are optional.
+});
 
+discordClient.player = player;
 
-client.login(token).then(() => {
+ReadyEvent(discordClient);
+InteractionCreateEvent(discordClient, player);
 
-    if (!client.user) {
+discordClient.login(token).then(() => {
+
+    if (!discordClient.user) {
         return;
     }
 
-    console.log(`Logged in as ${client.user.tag}!`);
-}).catch(err => {
-    console.error(err);
+    console.log(`Logged in as ${discordClient.user.tag}!`);
 });
+
+discordClient.player
+    .on('channelEmpty', (q: { members: { size: number; }; leave: () => void; }) => {
+        //wait 5 minutes before leaving the channel
+        setTimeout(() => {
+            //check if the channel is empty
+            if (q.members.size === 0) {
+                q.leave();
+            }
+        } , 300000);
+    });
+
 
 //yarn start

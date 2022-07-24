@@ -1,11 +1,13 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, "__esModule", {value: true});
 exports.DeleteMessages = void 0;
 const discord_js_1 = require("discord.js");
 exports.DeleteMessages = {
     name: "delete",
     description: "Deletes a number of messages",
     type: discord_js_1.ApplicationCommandType.ChatInput,
+    botRequiredPerms: [discord_js_1.PermissionsBitField.Flags.ManageMessages],
+    userRequiredPerms: [discord_js_1.PermissionsBitField.Flags.ManageMessages],
     options: [
         {
             name: "count",
@@ -23,13 +25,6 @@ exports.DeleteMessages = {
         const member = interaction.inCachedGuild() ? interaction.member : null;
         if (!member) {
             await interaction.reply("You must be in a guild to use this command");
-            return;
-        }
-        if (!member.permissions.has(discord_js_1.PermissionsBitField.Flags.ManageMessages)) {
-            await interaction.reply({
-                content: "You do not have the required permissions to use this command",
-                ephemeral: true
-            });
             return;
         }
         const channel = interaction.channel.isTextBased() ? interaction.channel : undefined;

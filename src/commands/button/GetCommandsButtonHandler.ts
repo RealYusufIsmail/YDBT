@@ -1,6 +1,6 @@
 import {IButton} from "../../handle/button/Button";
 import {ActionRowBuilder, ButtonBuilder, ButtonStyle, Colors, EmbedBuilder} from "discord.js";
-import {getCommands} from "../../handle/command/RegSlashCommands";
+import {getCommands, getMusicCommands} from "../../handle/command/RegSlashCommands";
 
 export const GetCommandsButtonHandler: IButton = {
     customId: "commands",
@@ -15,7 +15,16 @@ export const GetCommandsButtonHandler: IButton = {
                     }
                 }
             ))
+            .addFields(getMusicCommands().map(command => {
+                    return {
+                        name: command.name,
+                        value: command.description
+                    }
+                }
+            ))
             .setColor(Colors.Aqua);
+
+        //TODO: build a page system for this
 
         //add delete button
         const button = new ActionRowBuilder<ButtonBuilder>()

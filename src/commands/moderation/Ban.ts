@@ -1,10 +1,12 @@
 import {ISlashCommand} from "../../handle/command/ISlashCommand";
-import {ApplicationCommandOptionType, ApplicationCommandType} from "discord.js";
+import {ApplicationCommandOptionType, ApplicationCommandType, PermissionsBitField} from "discord.js";
 
 export const Ban: ISlashCommand = {
     name: "ban",
     description: "Bans a user from the server",
     type: ApplicationCommandType.ChatInput,
+    botRequiredPerms : [ PermissionsBitField.Flags.BanMembers],
+    userRequiredPerms : [ PermissionsBitField.Flags.BanMembers],
     options: [
         {
             name: "user",

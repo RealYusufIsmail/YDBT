@@ -1,10 +1,12 @@
 import {ISlashCommand} from "../../handle/command/ISlashCommand";
-import {ApplicationCommandOptionType, ApplicationCommandType} from "discord.js";
+import {ApplicationCommandOptionType, ApplicationCommandType, PermissionsBitField} from "discord.js";
 
 export const Kick: ISlashCommand = {
     name: "kick",
     description: "Kicks a user from the server",
     type: ApplicationCommandType.ChatInput,
+    botRequiredPerms : [ PermissionsBitField.Flags.KickMembers],
+    userRequiredPerms : [ PermissionsBitField.Flags.KickMembers],
     options: [
         {
             name: "member",
