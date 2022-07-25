@@ -5,8 +5,8 @@ export const Ban: ISlashCommand = {
     name: "ban",
     description: "Bans a user from the server",
     type: ApplicationCommandType.ChatInput,
-    botRequiredPerms : [ PermissionsBitField.Flags.BanMembers],
-    userRequiredPerms : [ PermissionsBitField.Flags.BanMembers],
+    botRequiredPerms: [PermissionsBitField.Flags.BanMembers],
+    userRequiredPerms: [PermissionsBitField.Flags.BanMembers],
     options: [
         {
             name: "user",

@@ -25,12 +25,12 @@ export const GetQueue: ISlashCommand = {
             .setTitle("Queue")
             .addFields(
                 guildQueue.songs.map((song, index) => {
-                    return {
-                        name: `${index + 1}. ${song.name}` + ' by ' + ` ${song.author}`,
-                        value: `${song.url}` + '\n' + `${song.duration}`
+                        return {
+                            name: `${index + 1}. ${song.name}` + ' by ' + ` ${song.author}`,
+                            value: `${song.url}` + '\n' + `${song.duration}`
+                        }
                     }
-                }
-            ) as Array<{ name: string, value: string }>)
+                ) as Array<{ name: string, value: string }>)
             .setColor(Colors.Aqua)
             .setTimestamp();
 

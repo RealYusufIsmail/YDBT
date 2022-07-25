@@ -2,5 +2,6 @@ import {GetCommandsButtonHandler} from "../../commands/button/GetCommandsButtonH
 import {IButton} from "./Button";
 import {DeleteButtonHandler} from "../../commands/button/DeleteButtonHandler";
 import {HandelUptimeButton} from "../../commands/button/HandelUptimeButton";
+import {Page2Handler} from "../../commands/button/command/Page2Handler";
 
-export const RegButtons: IButton[] = [GetCommandsButtonHandler, DeleteButtonHandler, HandelUptimeButton];
+export const RegButtons: IButton[] = [GetCommandsButtonHandler, DeleteButtonHandler, HandelUptimeButton, Page2Handler];

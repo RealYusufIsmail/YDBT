@@ -5,8 +5,8 @@ export const DeleteMessages: ISlashCommand = {
     name: "delete",
     description: "Deletes a number of messages",
     type: ApplicationCommandType.ChatInput,
-    botRequiredPerms : [ PermissionsBitField.Flags.ManageMessages],
-    userRequiredPerms : [ PermissionsBitField.Flags.ManageMessages],
+    botRequiredPerms: [PermissionsBitField.Flags.ManageMessages],
+    userRequiredPerms: [PermissionsBitField.Flags.ManageMessages],
     options: [
         {
             name: "count",

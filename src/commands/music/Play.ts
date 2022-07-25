@@ -40,7 +40,7 @@ export const Play: ISlashCommand = {
         }
 
         //need to check if the song is a youtube song
-        if(!songOption.includes("https://www.youtube.com/watch?v=")){
+        if (!songOption.includes("https://www.youtube.com/watch?v=")) {
             await interaction.reply("Please specify a youtube song");
             return;
         }
@@ -52,7 +52,7 @@ export const Play: ISlashCommand = {
             interaction.reply("Playing song");
         }).catch(async (error) => {
             await interaction.reply(`Error playing song: ${error}`);
-            if(!guildQueue)
+            if (!guildQueue)
                 queue.stop();
         });
     }

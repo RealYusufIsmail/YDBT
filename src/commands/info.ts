@@ -18,7 +18,7 @@ export const Info: ISlashCommand = {
                 {name: "Tag", value: bot!.tag.toString(), inline: false},
                 {name: "Created at", value: bot!.createdAt.toString(), inline: false},
                 {name: "Joined at", value: guild!.joinedAt.toString(), inline: false},
-                {name: "Amount of commands" , value: client.application!.commands.cache.size.toString(), inline: false},
+                {name: "Amount of commands", value: client.application!.commands.cache.size.toString(), inline: false},
                 {name: "Amount of members", value: guild!.memberCount.toString(), inline: false},
                 {name: "Amount of channels", value: guild!.channels.cache.size.toString(), inline: false},
                 {name: "Amount of guilds", value: client.guilds.cache.size.toString(), inline: false}])

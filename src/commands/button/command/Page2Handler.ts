@@ -1,11 +1,17 @@
-import {IButton} from "../../handle/button/Button";
+import {IButton} from "../../../handle/button/Button";
 import {ActionRowBuilder, ButtonBuilder, ButtonStyle, Colors, EmbedBuilder} from "discord.js";
-import {getCommands} from "../../handle/command/RegSlashCommands";
+import {getCommands} from "../../../handle/command/RegSlashCommands";
 
-export const GetCommandsButtonHandler: IButton = {
-    customId: "commands",
+export const Page2Handler: IButton = {
+    customId: "page2",
 
     run: async (client, interaction) => {
+        //need a way to get the commands which are not in the first page
+        const commands = getCommands();
+
+        //want everything after length of 20
+        const commandsPage2 = commands.slice(20);
+
         const embed = new EmbedBuilder();
 
         const button = new ActionRowBuilder<ButtonBuilder>()
@@ -14,11 +20,10 @@ export const GetCommandsButtonHandler: IButton = {
                 .setLabel("Delete")
                 .setStyle(ButtonStyle.Danger));
 
-        //if getCommands().length > 25, split into multiple pages
-        if (getCommands().length > 20) {
+        if (commandsPage2.length > 40) {
             embed.setTitle("Commands");
-            embed.setDescription("Page 1");
-            embed.addFields(getCommands().slice(0, 20).map(command => {
+            embed.setDescription("Page 2");
+            embed.addFields(commandsPage2.slice(0, 40).map(command => {
                 return {
                     name: command.name,
                     value: command.description
@@ -27,13 +32,13 @@ export const GetCommandsButtonHandler: IButton = {
             embed.setColor(Colors.Aqua);
 
             button.addComponents(new ButtonBuilder()
-                .setCustomId(`page2`)
-                .setLabel(`Page 2`)
+                .setCustomId(`page3`)
+                .setLabel(`Page 3`)
                 .setStyle(ButtonStyle.Primary));
         } else {
             embed.setTitle("Commands");
-            embed.setDescription("Page 1");
-            embed.addFields(getCommands().map(command => {
+            embed.setDescription("Page 2");
+            embed.addFields(commandsPage2.map(command => {
                 return {
                     name: command.name,
                     value: command.description

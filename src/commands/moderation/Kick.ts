@@ -5,8 +5,8 @@ export const Kick: ISlashCommand = {
     name: "kick",
     description: "Kicks a user from the server",
     type: ApplicationCommandType.ChatInput,
-    botRequiredPerms : [ PermissionsBitField.Flags.KickMembers],
-    userRequiredPerms : [ PermissionsBitField.Flags.KickMembers],
+    botRequiredPerms: [PermissionsBitField.Flags.KickMembers],
+    userRequiredPerms: [PermissionsBitField.Flags.KickMembers],
     options: [
         {
             name: "member",

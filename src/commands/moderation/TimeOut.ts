@@ -6,8 +6,8 @@ export const TimeOut: ISlashCommand = {
     name: "timeout",
     description: "Time out a user for a certain amount of time.",
     type: ApplicationCommandType.ChatInput,
-    botRequiredPerms : [ PermissionsBitField.Flags.MuteMembers],
-    userRequiredPerms : [ PermissionsBitField.Flags.MuteMembers],
+    botRequiredPerms: [PermissionsBitField.Flags.MuteMembers],
+    userRequiredPerms: [PermissionsBitField.Flags.MuteMembers],
     options: [
         {
             name: "member",
