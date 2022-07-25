@@ -7,8 +7,6 @@ import ReadyEvent from "./listeners/ReadyEvent";
 dotenv.config();
 
 const token = process.env.DISCORD_TOKEN;
-const guildId = process.env.DISCORD_GUILD_ID;
-
 console.log("Starting bot...");
 
 const Discord = require("discord.js");
@@ -23,11 +21,34 @@ const player = new Player(discordClient, {
 
 discordClient.player = player;
 
+const { MongoClient } = require('mongodb');
+
+const url =  process.env.DB_CONN_STRING;
+const client = new MongoClient(url);
+
+const dbName = 'ydbt';
+
+let db = null;
+
+async function main() {
+    // Use connect method to connect to the server
+    await client.connect();
+    console.log('Connected successfully to server');
+    db = client.db(dbName);
+    discordClient.db = db;
+    return 'done.';
+}
+
+main()
+    .then(console.log)
+    .catch(console.error)
+    .finally(() => client.close());
+
 ReadyEvent(discordClient);
-InteractionCreateEvent(discordClient, player);
+InteractionCreateEvent(discordClient, player, db);
 
-discordClient.login(token).then(() => {
 
+discordClient.login(token).then(async () => {
     if (!discordClient.user) {
         return;
     }

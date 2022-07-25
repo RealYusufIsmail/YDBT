@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const RegSlashCommands_1 = require("../handle/command/RegSlashCommands");
 const RegButtons_1 = require("../handle/button/RegButtons");
-exports.default = (client, player) => {
+exports.default = (client, player, db) => {
     client.on("interactionCreate", async (interaction) => {
         if (interaction.isChatInputCommand()) {
             await handleSlashCommand(client, interaction, player);

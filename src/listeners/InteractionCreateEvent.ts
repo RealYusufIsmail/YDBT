@@ -2,9 +2,10 @@ import Discord, {ButtonInteraction, Client, CommandInteraction, GuildMember, Int
 import {RegSlashCommands} from "../handle/command/RegSlashCommands";
 import {RegButtons} from "../handle/button/RegButtons";
 import {Player} from "discord-music-player";
+import {MongoClient} from "mongodb";
 
 
-export default (client: Client, player: Player): void => {
+export default (client: Client, player: Player, db : any): void => {
     client.on("interactionCreate", async (interaction: Interaction) => {
         if (interaction.isChatInputCommand()) {
             await handleSlashCommand(client, interaction, player);
