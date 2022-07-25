@@ -22,10 +22,11 @@ exports.Ban = {
             required: true
         }
     ],
-    run: async (client, interaction) => {
+    run: async (client, interaction, p, db) => {
         const user = interaction.options.getUser("user");
         const reason = interaction.isChatInputCommand() ? interaction.options.getString("reason") : "No reason provided";
         const bot = interaction.guild.members.cache.get(client.user.id);
+        const database = db;
         if (!user) {
             await interaction.reply("Could not find the user to ban");
             return;

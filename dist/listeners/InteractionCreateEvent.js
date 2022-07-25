@@ -5,14 +5,14 @@ const RegButtons_1 = require("../handle/button/RegButtons");
 exports.default = (client, player, db) => {
     client.on("interactionCreate", async (interaction) => {
         if (interaction.isChatInputCommand()) {
-            await handleSlashCommand(client, interaction, player);
+            await handleSlashCommand(client, interaction, player, db);
         }
         else if (interaction.isButton()) {
             await handleButton(client, interaction);
         }
     });
 };
-const handleSlashCommand = async (client, interaction, player) => {
+const handleSlashCommand = async (client, interaction, player, db) => {
     const command = RegSlashCommands_1.RegSlashCommands.find(c => c.name === interaction.commandName);
     if (!command) {
         await interaction.reply({ content: "Could not find the command", ephemeral: true });
@@ -23,7 +23,7 @@ const handleSlashCommand = async (client, interaction, player) => {
     const botAsMember = interaction.guild.members.me;
     await checkIfMemberPerms(guildMember, command.userRequiredPerms, interaction);
     await checkIfMemberPerms(botAsMember, command.botRequiredPerms, interaction);
-    await command.run(client, interaction, player);
+    await command.run(client, interaction, player, db);
 };
 async function checkIfMemberPerms(member, perms, interaction) {
     if (member != null) {

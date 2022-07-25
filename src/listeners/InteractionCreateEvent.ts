@@ -8,14 +8,14 @@ import {MongoClient} from "mongodb";
 export default (client: Client, player: Player, db : any): void => {
     client.on("interactionCreate", async (interaction: Interaction) => {
         if (interaction.isChatInputCommand()) {
-            await handleSlashCommand(client, interaction, player);
+            await handleSlashCommand(client, interaction, player, db);
         } else if (interaction.isButton()) {
             await handleButton(client, interaction);
         }
     });
 }
 
-const handleSlashCommand = async (client: Client, interaction: CommandInteraction, player: Player): Promise<void> => {
+const handleSlashCommand = async (client: Client, interaction: CommandInteraction, player: Player, db : any): Promise<void> => {
     const command = RegSlashCommands.find(c => c.name === interaction.commandName);
 
     if (!command) {
@@ -31,7 +31,7 @@ const handleSlashCommand = async (client: Client, interaction: CommandInteractio
     await checkIfMemberPerms(guildMember, command.userRequiredPerms, interaction);
     await checkIfMemberPerms(botAsMember, command.botRequiredPerms, interaction);
 
-    await command.run(client, interaction, player);
+    await command.run(client, interaction, player, db);
 }
 
 async function checkIfMemberPerms(member: GuildMember, perms: bigint[] | undefined, interaction: CommandInteraction): Promise<boolean> {

@@ -1,5 +1,6 @@
 import {ISlashCommand} from "../../handle/command/ISlashCommand";
 import {ApplicationCommandOptionType, ApplicationCommandType, PermissionsBitField} from "discord.js";
+import {MongoClient} from "mongodb";
 
 export const Ban: ISlashCommand = {
     name: "ban",
@@ -22,10 +23,11 @@ export const Ban: ISlashCommand = {
         }
     ],
 
-    run: async (client, interaction) => {
+    run: async (client, interaction, p, db) => {
         const user = interaction.options.getUser("user");
         const reason = interaction.isChatInputCommand() ? interaction.options.getString("reason") : "No reason provided";
         const bot = interaction.guild!.members.cache.get(client.user!.id);
+        const database = db as MongoClient["db"];
 
         if (!user) {
             await interaction.reply("Could not find the user to ban");

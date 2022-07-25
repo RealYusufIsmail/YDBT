@@ -7,5 +7,5 @@ export interface ISlashCommandCore extends ChatInputApplicationCommandData {
 }
 
 export interface ISlashCommand extends ISlashCommandCore {
-    run: (client: Client, interaction: CommandInteraction, player: Player) => Promise<void>;
+    run: (client: Client, interaction: CommandInteraction, player: Player, db : any) => Promise<void>;
 }
