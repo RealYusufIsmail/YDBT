@@ -1,14 +1,21 @@
-import {ApplicationCommandType} from "discord.js";
-import {ISlashCommand} from "../handle/command/ISlashCommand";
+import { ApplicationCommandType } from 'discord.js';
+import { ISlashCommand } from '../handle/command/ISlashCommand';
 
 export const Ping: ISlashCommand = {
-    name: "ping",
-    description: "Shows the bot's ping",
-    type: ApplicationCommandType.ChatInput,
+  name: 'ping',
+  description: "Shows the bot's ping",
+  type: ApplicationCommandType.ChatInput,
 
-    run: async (client, interaction) => {
-
-        const sent = await interaction.reply({content: 'Pinging...', fetchReply: true, ephemeral: true});
-        await interaction.editReply(`Roundtrip latency: ${sent.createdTimestamp - interaction.createdTimestamp}ms`);
-    },
-}
+  run: async (client, interaction) => {
+    const sent = await interaction.reply({
+      content: 'Pinging...',
+      fetchReply: true,
+      ephemeral: true
+    });
+    await interaction.editReply(
+      `Roundtrip latency: ${
+        sent.createdTimestamp - interaction.createdTimestamp
+      }ms`
+    );
+  }
+};

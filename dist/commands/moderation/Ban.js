@@ -2,6 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Ban = void 0;
 const discord_js_1 = require("discord.js");
+const MongoDB_1 = require("../../db/MongoDB");
+const TypeOfModeration_1 = require("../../db/TypeOfModeration");
 exports.Ban = {
     name: "ban",
     description: "Bans a user from the server",
@@ -26,7 +28,6 @@ exports.Ban = {
         const user = interaction.options.getUser("user");
         const reason = interaction.isChatInputCommand() ? interaction.options.getString("reason") : "No reason provided";
         const bot = interaction.guild.members.cache.get(client.user.id);
-        const database = db;
         if (!user) {
             await interaction.reply("Could not find the user to ban");
             return;
@@ -43,6 +44,7 @@ exports.Ban = {
             }).catch(() => {
                 interaction.reply({ content: "Could not ban the provided user", ephemeral: true });
             });
+            await (0, MongoDB_1.updateModerationDatabase)(db, user.id, reason, TypeOfModeration_1.TypeOfModeration.BAN);
         }
         else {
             if (guildMember.roles.highest.comparePositionTo(bot.roles.highest) > 0) {
@@ -55,6 +57,7 @@ exports.Ban = {
             }).catch(() => {
                 interaction.reply({ content: "Could not ban the provided user", ephemeral: true });
             });
+            await (0, MongoDB_1.updateModerationDatabase)(db, guildMember.id, reason, TypeOfModeration_1.TypeOfModeration.BAN);
         }
     }
 };

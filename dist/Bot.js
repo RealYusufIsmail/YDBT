@@ -34,6 +34,9 @@ main()
     .catch(console.error)
     .finally(() => client.close());
 (0, ReadyEvent_1.default)(discordClient);
+if (db == null) {
+    console.error("Could not connect to database");
+}
 (0, InteractionCreateEvent_1.default)(discordClient, player, db);
 discordClient.login(token).then(async () => {
     if (!discordClient.user) {

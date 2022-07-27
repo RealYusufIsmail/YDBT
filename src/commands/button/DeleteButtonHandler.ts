@@ -1,9 +1,9 @@
-import {IButton} from "../../handle/button/Button";
+import { IButton } from '../../handle/button/Button';
 
 export const DeleteButtonHandler: IButton = {
-    customId: "delete",
+  customId: 'delete',
 
-    run: async (client, interaction) => {
-        await interaction.message.delete();
-    }
-}
+  run: async (client, interaction) => {
+    await interaction.message.delete();
+  }
+};

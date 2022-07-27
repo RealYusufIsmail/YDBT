@@ -1,28 +1,28 @@
-import {ISlashCommand} from "../../handle/command/ISlashCommand";
-import {ApplicationCommandType} from "discord.js";
+import { ISlashCommand } from '../../handle/command/ISlashCommand';
+import { ApplicationCommandType } from 'discord.js';
 
 export const Stop: ISlashCommand = {
-    name: "stop",
-    description: "Stops the current song",
-    type: ApplicationCommandType.ChatInput,
+  name: 'stop',
+  description: 'Stops the current song',
+  type: ApplicationCommandType.ChatInput,
 
-    run: async (client, interaction, player) => {
-        const guild = interaction.guild;
+  run: async (client, interaction, player) => {
+    const guild = interaction.guild;
 
-        if (guild == null) {
-            await interaction.reply("You must be in a guild to use this command");
-            return;
-        }
-
-        let guildQueue = player.getQueue(guild.id);
-
-        if (guildQueue == null) {
-            await interaction.reply("There is no song to stop");
-            return;
-        }
-
-        await guildQueue.stop();
-        await guildQueue.clearQueue();
-        await interaction.reply("Stopped song");
+    if (guild == null) {
+      await interaction.reply('You must be in a guild to use this command');
+      return;
     }
-}
+
+    let guildQueue = player.getQueue(guild.id);
+
+    if (guildQueue == null) {
+      await interaction.reply('There is no song to stop');
+      return;
+    }
+
+    await guildQueue.stop();
+    await guildQueue.clearQueue();
+    await interaction.reply('Stopped song');
+  }
+};
