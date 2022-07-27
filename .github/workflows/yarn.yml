@@ -15,3 +15,6 @@ jobs:
       - uses: borales/actions-yarn@v3.0.0
         with:
           cmd: prettier-format # will run `yarn prettier-format` command
+      - uses: borales/actions-yarn@v3.0.0
+        with:
+          cmd: audit # will run `yarn audit` command
