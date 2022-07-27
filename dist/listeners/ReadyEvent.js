@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const RegSlashCommands_1 = require("../handle/command/RegSlashCommands");
 exports.default = (client) => {
-    client.on("ready", async () => {
+    client.on('ready', async () => {
         if (!client.user || !client.application) {
             return;
         }

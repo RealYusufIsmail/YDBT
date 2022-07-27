@@ -4,6 +4,8 @@ import {
   ApplicationCommandType,
   PermissionsBitField
 } from 'discord.js';
+import { updateModerationDatabase } from '../../db/MongoDB';
+import { TypeOfModeration } from '../../db/TypeOfModeration';
 
 export const UnBan: ISlashCommand = {
   name: 'unban',
@@ -26,7 +28,7 @@ export const UnBan: ISlashCommand = {
     }
   ],
 
-  run: async (client, interaction) => {
+  run: async (client, interaction, player, db) => {
     const user = interaction.options.getUser('user');
     const reason = interaction.isChatInputCommand()
       ? interaction.options.getString('reason')
@@ -41,6 +43,14 @@ export const UnBan: ISlashCommand = {
       await interaction.reply('No reason provided');
       return;
     }
+
+    await updateModerationDatabase(
+      db,
+      interaction.guild!.id,
+      user.id,
+      reason,
+      TypeOfModeration.UNBAN
+    );
 
     await interaction!
       .guild!.members.unban(user, reason)

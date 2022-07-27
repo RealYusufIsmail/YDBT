@@ -1,6 +1,8 @@
 import { ISlashCommand } from '../../handle/command/ISlashCommand';
 import { ApplicationCommandType } from 'discord-api-types/v10';
 import { ApplicationCommandOptionType, PermissionsBitField } from 'discord.js';
+import { updateModerationDatabase } from '../../db/MongoDB';
+import { TypeOfModeration } from '../../db/TypeOfModeration';
 
 export const TimeOut: ISlashCommand = {
   name: 'timeout',
@@ -23,10 +25,16 @@ export const TimeOut: ISlashCommand = {
       min_value: 1,
       max_value: 40320,
       required: true
+    },
+    {
+      name: 'reason',
+      description: 'The reason for the timeout.',
+      type: ApplicationCommandOptionType.String,
+      required: true
     }
   ],
 
-  run: async (client, interaction) => {
+  run: async (client, interaction, player, db) => {
     const member = interaction.isChatInputCommand()
       ? interaction.options.getUser('member')
       : undefined;
@@ -34,6 +42,9 @@ export const TimeOut: ISlashCommand = {
       ? interaction.options.getNumber('duration')
       : 0;
     const bot = interaction.guild!.members.cache.get(client.user!.id);
+    const reason = interaction.isChatInputCommand()
+      ? interaction.options.getString('reason')
+      : '';
 
     if (!member) {
       await interaction.reply('Could not find the member to time out');
@@ -57,6 +68,11 @@ export const TimeOut: ISlashCommand = {
       return;
     }
 
+    if (!reason) {
+      await interaction.reply('No reason provided');
+      return;
+    }
+
     //check if the member being timed out is not stronger than the bot
     if (guildMember.roles.highest.comparePositionTo(bot!.roles.highest) > 0) {
       await interaction.reply(
@@ -65,8 +81,16 @@ export const TimeOut: ISlashCommand = {
       return;
     }
 
+    await updateModerationDatabase(
+      db,
+      interaction.guild!.id,
+      member.id,
+      reason,
+      TypeOfModeration.TIMEOUT
+    );
+
     await guildMember
-      .timeout(time)
+      .timeout(time, reason)
       .then(() => {
         interaction.reply(
           `Timed out ${member.username}#${member.discriminator} for ${duration} minutes`

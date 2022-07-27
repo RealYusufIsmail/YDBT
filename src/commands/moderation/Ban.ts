@@ -60,7 +60,13 @@ export const Ban: ISlashCommand = {
           });
         });
 
-      await updateModerationDatabase(db, user.id, reason, TypeOfModeration.BAN);
+      await updateModerationDatabase(
+        db,
+        interaction.guild!.id,
+        user.id,
+        reason,
+        TypeOfModeration.BAN
+      );
     } else {
       if (guildMember.roles.highest.comparePositionTo(bot!.roles.highest) > 0) {
         await interaction.reply(
@@ -83,6 +89,7 @@ export const Ban: ISlashCommand = {
 
       await updateModerationDatabase(
         db,
+        interaction.guild!.id,
         guildMember.id,
         reason,
         TypeOfModeration.BAN

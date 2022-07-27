@@ -4,6 +4,8 @@ import {
   ApplicationCommandType,
   PermissionsBitField
 } from 'discord.js';
+import { updateModerationDatabase } from '../../db/MongoDB';
+import { TypeOfModeration } from '../../db/TypeOfModeration';
 
 export const Kick: ISlashCommand = {
   name: 'kick',
@@ -26,7 +28,7 @@ export const Kick: ISlashCommand = {
     }
   ],
 
-  run: async (client, interaction) => {
+  run: async (client, interaction, play, db) => {
     const member = interaction.options.getUser('member');
     const reason = interaction.isChatInputCommand()
       ? interaction.options.getString('reason')
@@ -56,6 +58,14 @@ export const Kick: ISlashCommand = {
       );
       return;
     }
+
+    await updateModerationDatabase(
+      db,
+      interaction.guild!.id,
+      member.id,
+      reason,
+      TypeOfModeration.KICK
+    );
 
     await interaction!
       .guild!.members.kick(member, reason)

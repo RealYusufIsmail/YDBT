@@ -7,14 +7,18 @@ const InteractionCreateEvent_1 = tslib_1.__importDefault(require("./listeners/In
 const ReadyEvent_1 = tslib_1.__importDefault(require("./listeners/ReadyEvent"));
 dotenv.config();
 const token = process.env.DISCORD_TOKEN;
-console.log("Starting bot...");
-const Discord = require("discord.js");
+console.log('Starting bot...');
+const Discord = require('discord.js');
 const discordClient = new Discord.Client({
-    intents: [discord_js_1.GatewayIntentBits.Guilds, discord_js_1.GatewayIntentBits.GuildMessages, discord_js_1.GatewayIntentBits.GuildVoiceStates]
+    intents: [
+        discord_js_1.GatewayIntentBits.Guilds,
+        discord_js_1.GatewayIntentBits.GuildMessages,
+        discord_js_1.GatewayIntentBits.GuildVoiceStates
+    ]
 });
-const { Player } = require("discord-music-player");
+const { Player } = require('discord-music-player');
 const player = new Player(discordClient, {
-    leaveOnEmpty: false,
+    leaveOnEmpty: false
 });
 discordClient.player = player;
 const { MongoClient } = require('mongodb');
@@ -35,7 +39,7 @@ main()
     .finally(() => client.close());
 (0, ReadyEvent_1.default)(discordClient);
 if (db == null) {
-    console.error("Could not connect to database");
+    console.error('Could not connect to database');
 }
 (0, InteractionCreateEvent_1.default)(discordClient, player, db);
 discordClient.login(token).then(async () => {
@@ -44,8 +48,7 @@ discordClient.login(token).then(async () => {
     }
     console.log(`Logged in as ${discordClient.user.tag}!`);
 });
-discordClient.player
-    .on('channelEmpty', (q) => {
+discordClient.player.on('channelEmpty', (q) => {
     setTimeout(() => {
         if (q.members.size === 0) {
             q.clear();

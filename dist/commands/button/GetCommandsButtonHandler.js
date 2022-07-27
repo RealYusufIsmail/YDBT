@@ -4,18 +4,19 @@ exports.GetCommandsButtonHandler = void 0;
 const discord_js_1 = require("discord.js");
 const RegSlashCommands_1 = require("../../handle/command/RegSlashCommands");
 exports.GetCommandsButtonHandler = {
-    customId: "commands",
+    customId: 'commands',
     run: async (client, interaction) => {
         const embed = new discord_js_1.EmbedBuilder();
-        const button = new discord_js_1.ActionRowBuilder()
-            .addComponents(new discord_js_1.ButtonBuilder()
-            .setCustomId("delete")
-            .setLabel("Delete")
+        const button = new discord_js_1.ActionRowBuilder().addComponents(new discord_js_1.ButtonBuilder()
+            .setCustomId('delete')
+            .setLabel('Delete')
             .setStyle(discord_js_1.ButtonStyle.Danger));
         if ((0, RegSlashCommands_1.getCommands)().length > 20) {
-            embed.setTitle("Commands");
-            embed.setDescription("Page 1");
-            embed.addFields((0, RegSlashCommands_1.getCommands)().slice(0, 20).map(command => {
+            embed.setTitle('Commands');
+            embed.setDescription('Page 1');
+            embed.addFields((0, RegSlashCommands_1.getCommands)()
+                .slice(0, 20)
+                .map((command) => {
                 return {
                     name: command.name,
                     value: command.description
@@ -28,9 +29,9 @@ exports.GetCommandsButtonHandler = {
                 .setStyle(discord_js_1.ButtonStyle.Primary));
         }
         else {
-            embed.setTitle("Commands");
-            embed.setDescription("Page 1");
-            embed.addFields((0, RegSlashCommands_1.getCommands)().map(command => {
+            embed.setTitle('Commands');
+            embed.setDescription('Page 1');
+            embed.addFields((0, RegSlashCommands_1.getCommands)().map((command) => {
                 return {
                     name: command.name,
                     value: command.description
