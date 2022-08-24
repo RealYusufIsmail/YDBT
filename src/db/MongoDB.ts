@@ -8,14 +8,27 @@ export async function updateModerationDatabase(
   guildId: string,
   userId: string,
   reason: string,
-  type: TypeOfModeration
+  type: TypeOfModeration,
+  warn : boolean = false
 ) {
   const moderationCollection = collection.collection('moderation');
-  await moderationCollection.insertOne({
-    guildId,
-    userId,
-    reason,
-    type,
-    date: new Date()
-  });
+
+  if (warn) {
+    await moderationCollection.insertOne({
+      guildId,
+      userId,
+      reason,
+      type,
+      "amount_of_warns" : 1,
+      date: new Date()
+    });
+  } else {
+    await moderationCollection.insertOne({
+      guildId,
+      userId,
+      reason,
+      type,
+      date: new Date()
+    });
+  }
 }

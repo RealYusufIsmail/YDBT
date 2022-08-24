@@ -7,4 +7,5 @@ var TypeOfModeration;
     TypeOfModeration[TypeOfModeration["UNBAN"] = 1] = "UNBAN";
     TypeOfModeration[TypeOfModeration["KICK"] = 2] = "KICK";
     TypeOfModeration[TypeOfModeration["TIMEOUT"] = 3] = "TIMEOUT";
+    TypeOfModeration[TypeOfModeration["WARN"] = 4] = "WARN";
 })(TypeOfModeration = exports.TypeOfModeration || (exports.TypeOfModeration = {}));
